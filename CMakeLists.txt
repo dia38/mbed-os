@@ -225,6 +225,9 @@ endfunction()
 # Parse toolchain generated map file of `target` and display a readable table format.
 #
 function(mbed_generate_map_file target)
+     if( EXISTS "${CMAKE_CURRENT_BINARY_DIR}/${target}${CMAKE_EXECUTABLE_SUFFIX}.map")
+         file(RENAME "${CMAKE_CURRENT_BINARY_DIR}/${target}${CMAKE_EXECUTABLE_SUFFIX}.map" "${CMAKE_CURRENT_BINARY_DIR}/${target}${CMAKE_EXECUTABLE_SUFFIX}.map.old")
+     endif()
      add_custom_command(
          TARGET
              ${target}
